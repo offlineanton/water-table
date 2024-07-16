@@ -21,11 +21,13 @@ import RiverSensorInfo from "./RiverSensorInfo";
 import { useMemo, useState } from "react";
   
 interface RiverSensorTableProps {
-    riverSensorData: DecodedRiverSensorData[]
+    riverSensorData: DecodedRiverSensorData[];
+    handleSetMarkerLocation: (long: number, lat: number) => void;
 }
 
 const RiverSensorTable = ({
-    riverSensorData
+    riverSensorData,
+    handleSetMarkerLocation,
 }: RiverSensorTableProps) => {
     const [currentRiverSensorID, setCurrentRiverSensorID] = useState<string | undefined>();
 
@@ -45,7 +47,8 @@ const RiverSensorTable = ({
                         <TableHead>Lat</TableHead>
                         <TableHead>Transmitted At</TableHead>
                         <TableHead />
-                        <TableHead className="text-right"></TableHead>
+                        <TableHead />
+                        <TableHead />
                     </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -66,10 +69,19 @@ const RiverSensorTable = ({
                             <TableCell className="text-right p-2">
                                 <Button 
                                     onClick={() => setCurrentRiverSensorID(data.id)}
-                                    variant="link" 
+                                    variant="outline" 
                                     size="sm"
                                 >
-                                    View Sensor Data
+                                    Sensor Data
+                                </Button>
+                            </TableCell>
+                            <TableCell className="text-right p-2">
+                                <Button 
+                                    onClick={() => handleSetMarkerLocation(Number(data.longitude), Number(data.latitude))}
+                                    variant="secondary" 
+                                    size="sm"
+                                >
+                                    Location
                                 </Button>
                             </TableCell>
                         </TableRow>
