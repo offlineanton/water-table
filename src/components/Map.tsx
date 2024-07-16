@@ -13,7 +13,7 @@ const Map = ({ markerLocation } : { markerLocation?: MarkerLocation }) => {
     return (
         <div className="w-full h-full absolute overflow-hidden">
             <ReactMapGL
-                longitude={markerLocation?.long ?? DEFAULT_LONG}
+                longitude={markerLocation?.long ? markerLocation?.long - 0.008 : DEFAULT_LONG}
                 latitude={markerLocation?.lat ?? DEFAULT_LAT}
                 mapboxAccessToken={token}
                 zoom={15}
@@ -23,7 +23,7 @@ const Map = ({ markerLocation } : { markerLocation?: MarkerLocation }) => {
                 {markerLocation?.lat && markerLocation?.long &&
                     <Marker 
                         latitude={markerLocation?.lat}
-                        longitude={markerLocation?.long + 0.008}
+                        longitude={markerLocation?.long}
                     />
                 }
             </ReactMapGL>
