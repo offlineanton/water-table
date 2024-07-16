@@ -76,13 +76,15 @@ const RiverSensorTable = ({
                                 </Button>
                             </TableCell>
                             <TableCell className="text-right p-2">
-                                <Button 
-                                    onClick={() => handleSetMarkerLocation(Number(data.longitude), Number(data.latitude))}
-                                    variant="secondary" 
-                                    size="sm"
-                                >
-                                    Location
-                                </Button>
+                                {window.innerWidth >= 850 &&
+                                    <Button 
+                                        onClick={() => handleSetMarkerLocation(Number(data.longitude), Number(data.latitude))}
+                                        variant="secondary" 
+                                        size="sm"
+                                    >
+                                        Location
+                                    </Button>
+                                }
                             </TableCell>
                         </TableRow>
                     ))}

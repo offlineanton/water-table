@@ -14,13 +14,19 @@ function App() {
   const handleChangePage = (page: number) => {
     setPage(page);
   }
+
+  const [search, setSearch] = useState("");
   
   const [markerLocation, setMarkerLocation] = useState<MarkerLocation | undefined>(undefined);
   const handleSetMarkerLocation = (long: number, lat: number) => {
     setMarkerLocation({ long, lat });
   }
 
-  const { riverSensorData, riverSensorDataLoading } = GetRiverSensorData({ page });
+  const { riverSensorData, riverSensorDataLoading, total } = GetRiverSensorData({ page, search });
+
+  const handleSearch = (value: string) => {
+    setSearch(value);
+  }
 
   return (
     <>
@@ -31,9 +37,13 @@ function App() {
           page={page}
           handleChangePage={handleChangePage} 
           loading={riverSensorDataLoading}
+          handleSearch={handleSearch}
+          total={total}
         />
 
-        <Map markerLocation={markerLocation} />
+        {window.innerWidth >= 850 &&
+          <Map markerLocation={markerLocation} />
+        }
       </div>
     </>
   )

@@ -5,10 +5,15 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
+import { Input } from "@/components/ui/input"
+
 
 import RiverSensorTable from "./RiverSensorTable";
 import { DecodedRiverSensorData } from "../hooks/types";
 import { Button } from "./ui/button";
+import { useState } from "react";
+import { DEFAULT_PAGE_AMOUNT } from "@/hooks/useGetRiverSensorData";
+import RiverSensorPagination from "./RiverSensorPagination";
 
 interface RiverSensorProps {
     riverSensorData: DecodedRiverSensorData[];
@@ -16,6 +21,8 @@ interface RiverSensorProps {
     handleChangePage: (page: number) => void;
     page: number;
     loading: boolean;
+    handleSearch: (value: string) => void;
+    total: number;
 }
 
 const RiverSensor = ({
@@ -24,13 +31,35 @@ const RiverSensor = ({
     page,
     handleChangePage,
     loading,
+    handleSearch,
+    total
 }: RiverSensorProps) => {
+    const [search, setSearch] = useState("");
+
+    const getRiverSensorStyles = window.innerWidth >= 850 
+        ? `absolute top-1/2 transform -translate-y-1/2 z-20 ml-10` 
+        : `w-full h-full m-0`
+
+    const getCardStyles = window.innerWidth >= 850 
+        ? ""
+        : "border-none shadow-none bg-transparent"
+
     return (
-        <div className="absolute top-1/2 transform -translate-y-1/2 z-20 ml-10">
-            <Card>
+        <div className={getRiverSensorStyles}>
+            <Card className={getCardStyles}>
                 <CardHeader>
-                    <CardTitle>River Sensor Data</CardTitle>
-                    <CardDescription>View the river sensor data below</CardDescription>
+                    <div>
+                        <CardTitle>River Sensor Data</CardTitle>
+                        <CardDescription className="mb-5">View the river sensor data below</CardDescription>
+                    </div>
+                    <div className="flex gap-5">
+                        <Input 
+                            placeholder="Seach by ID..." 
+                            value={search}
+                            onChange={(value) => setSearch(value.currentTarget.value)}
+                        />
+                        <Button onClick={() => handleSearch(search)}>Search</Button>
+                    </div>
                 </CardHeader>
                 <CardContent>
                     {loading ? 
@@ -39,26 +68,22 @@ const RiverSensor = ({
                         </div>
                     :
                         <>
-                            <RiverSensorTable riverSensorData={riverSensorData} handleSetMarkerLocation={handleSetMarkerLocation} />
-                            <div className={page === 1 ? `flex justify-end` : `flex justify-between`}>
-                                {page !== 1 &&
-                                    <Button 
-                                        variant="link"
-                                        size="sm"
-                                        onClick={() => handleChangePage(page - 1)}
-                                    >
-                                        Previous page
-                                    </Button>
-                                }
+                            {riverSensorData.length > 0 
+                            ?
+                                <RiverSensorTable 
+                                    riverSensorData={riverSensorData} 
+                                    handleSetMarkerLocation={handleSetMarkerLocation} 
+                                />
+                            :
+                                <p>No results</p>
+                            }
 
-                                <Button 
-                                    variant="link"
-                                    size="sm"
-                                        onClick={() => handleChangePage(page + 1)}
-                                >
-                                    Next page
-                                </Button>
-                            </div>
+                            {total > DEFAULT_PAGE_AMOUNT &&
+                                <RiverSensorPagination 
+                                    page={page}
+                                    handleChangePage={handleChangePage}
+                                />
+                            }
                         </>
                     }
                 </CardContent>

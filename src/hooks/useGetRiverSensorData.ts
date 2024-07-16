@@ -10,6 +10,7 @@ interface GetRiverSensorData {
     riverSensorData: DecodedRiverSensorData[];
     riverSensorDataError: boolean;
     riverSensorDataLoading: boolean;
+    total: number;
 }
 
 interface GetRiverSensorDataSettings {
@@ -18,22 +19,37 @@ interface GetRiverSensorDataSettings {
     search?: string;
 }
 
-export const GetRiverSensorData = ({ page, pageAmount = 10 }: GetRiverSensorDataSettings): GetRiverSensorData => {
+export const DEFAULT_PAGE_AMOUNT = 7;
+
+export const GetRiverSensorData = ({ 
+    page, 
+    pageAmount = DEFAULT_PAGE_AMOUNT, 
+    search 
+}: GetRiverSensorDataSettings): GetRiverSensorData => {
     const [riverSensorDataLoading, setRiverSensorDataLoading] = useState(false);
     const [riverSensorDataError] = useState(false);
     const [riverSensorData, setRiverSensorData] = useState<RiverSensorData[]>([]);
+    const [total, setTotal] = useState(0);
 
     // Replicating how the data would usually be fetched
     useEffect(() => {
         setRiverSensorDataLoading(true);
 
         setTimeout(() => {
-            const paginatedRiverSensor = RIVER_SENSOR_DATA.slice(page * pageAmount - pageAmount, page * pageAmount)
+            let filteredRiverSensorData = RIVER_SENSOR_DATA;
+
+            if (search) {
+                filteredRiverSensorData = filteredRiverSensorData.filter(data => (data.id.includes(search)));
+            }
+
+            setTotal(filteredRiverSensorData.length);
+
+            const paginatedRiverSensor = filteredRiverSensorData.slice(page * pageAmount - pageAmount, page * pageAmount)
 
             setRiverSensorData(paginatedRiverSensor)
             setRiverSensorDataLoading(false);
         }, 1000);
-    }, [page])
+    }, [page, search])
 
     return {
         riverSensorData: riverSensorData.length > 0
@@ -43,6 +59,7 @@ export const GetRiverSensorData = ({ page, pageAmount = 10 }: GetRiverSensorData
             })) 
             : [],
         riverSensorDataError,
-        riverSensorDataLoading
+        riverSensorDataLoading,
+        total
     }
 }

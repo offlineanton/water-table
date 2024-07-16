@@ -33,7 +33,7 @@ const Map = ({ markerLocation } : { markerLocation?: MarkerLocation }) => {
                 {markerLocation?.lat && markerLocation?.long &&
                     <Marker 
                         latitude={markerLocation?.lat}
-                        longitude={markerLocation?.long + 0.005}
+                        longitude={markerLocation?.long + 0.008}
                     />
                 }
             </ReactMapGL>
