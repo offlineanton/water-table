@@ -13,7 +13,7 @@ export interface RiverSensorData {
     };
 }
 
-type State = "Rising" | "Constant" | "Falling";
+export type RiverState = "Rising" | "Constant" | "Falling";
 
 interface DecodedPayload {
     temperature: {
@@ -33,7 +33,7 @@ interface DecodedPayload {
         unit: string,
     },
     alarm: boolean,
-    state: State,
+    state: RiverState,
     oxygen: {
         value: number,
         unit: string,

@@ -15,6 +15,7 @@ import {
     DialogTitle,
     DialogTrigger,
   } from "@/components/ui/dialog"
+  import { Button } from "@/components/ui/button";
 import { DecodedRiverSensorData } from "../hooks/types";
 import RiverSensorInfo from "./RiverSensorInfo";
 import { useMemo, useState } from "react";
@@ -39,10 +40,11 @@ const RiverSensorTable = ({
                     <TableRow>
                         {/* <TableHead className="w-[100px]">ID</TableHead> */}
                         {/* <TableHead>ID</TableHead> */}
-                        <TableHead>Direction</TableHead>
+                        {/* <TableHead>Direction</TableHead> */}
                         <TableHead>Long</TableHead>
                         <TableHead>Lat</TableHead>
                         <TableHead>Transmitted At</TableHead>
+                        <TableHead />
                         <TableHead className="text-right"></TableHead>
                     </TableRow>
                 </TableHeader>
@@ -50,12 +52,25 @@ const RiverSensorTable = ({
                     {riverSensorData.map(data => (
                         <TableRow key={data.id}>
                             {/* <TableCell className="font-medium">{data.id}</TableCell> */}
-                            <TableCell>{data.direction}</TableCell>
-                            <TableCell>{data.longitude}</TableCell>
-                            <TableCell>{data.latitude}</TableCell>
-                            <TableCell>{new Date(data.transmittedAt.iso).toLocaleString("en-GB")}</TableCell>
-                            <TableCell className="text-right">
-                                <button onClick={() => setCurrentRiverSensorID(data.id)}>View Sensor Data</button>
+                            {/* <TableCell>{data.direction}</TableCell> */}
+                            <TableCell className="p-2">{data.longitude}</TableCell>
+                            <TableCell className="p-2">{data.latitude}</TableCell>
+                            <TableCell className="p-2">{new Date(data.transmittedAt.iso).toLocaleString("en-GB")}</TableCell>
+                            <TableCell className="p-2">
+                                {data.payload.alarm && 
+                                    <div className="p-1 bg-red-500 text-white rounded-lg text-xs text-center">
+                                        Alarm active
+                                    </div>
+                                }
+                            </TableCell>
+                            <TableCell className="text-right p-2">
+                                <Button 
+                                    onClick={() => setCurrentRiverSensorID(data.id)}
+                                    variant="link" 
+                                    size="sm"
+                                >
+                                    View Sensor Data
+                                </Button>
                             </TableCell>
                         </TableRow>
                     ))}

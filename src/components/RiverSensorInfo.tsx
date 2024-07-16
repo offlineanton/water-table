@@ -2,6 +2,8 @@ import { DialogContent, DialogDescription, DialogTitle } from "@/components/ui/d
 import { DialogHeader } from "./ui/dialog";
 import { DecodedRiverSensorData } from "../hooks/types";
 import InfoBox from "./InfoBox";
+import { getBatteryColour, getStateIcon, getTempColour } from "@/helpers";
+import { ThickArrowUpIcon } from "@radix-ui/react-icons";
 
 interface RiverSensorInfoProps {
     riverSensorData: DecodedRiverSensorData
@@ -24,6 +26,7 @@ const RiverSensorInfo = ({
                 <div className="grid grid-cols-4 gap-2.5">
                     <InfoBox 
                         title="Temp"
+                        background={getTempColour(riverSensorData.payload.temperature.value)}
                         value={`${riverSensorData.payload.temperature.value} ${riverSensorData.payload.temperature.unit}`}
                     />
                     <InfoBox 
@@ -36,14 +39,16 @@ const RiverSensorInfo = ({
                     />
                     <InfoBox 
                         title="Battery"
+                        background={getBatteryColour(riverSensorData.payload.battery.value)}
                         value={`${riverSensorData.payload.battery.value} ${riverSensorData.payload.battery.unit}`}
                     />
-                    <InfoBox 
+                    {/* <InfoBox 
                         title="Alarm"
                         value={`${riverSensorData.payload.alarm.toString()}`}
-                    />
+                    /> */}
                     <InfoBox 
                         title="State"
+                        Icon={getStateIcon(riverSensorData.payload.state)}
                         value={`${riverSensorData.payload.state}`}
                     />
                     <InfoBox 
