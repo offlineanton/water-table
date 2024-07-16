@@ -2,7 +2,7 @@ import { DialogContent, DialogDescription, DialogTitle } from "@/components/ui/d
 import { DialogHeader } from "./ui/dialog";
 import { DecodedRiverSensorData } from "../hooks/types";
 import InfoBox from "./InfoBox";
-import { getBatteryColour, getStateIcon, getTempColour } from "../helpers";
+import { getBatteryColour, getSecondaryBatteryColour, getSpeedIcon, getStateIcon, getTempColour } from "../helpers";
 
 interface RiverSensorInfoProps {
     riverSensorData: DecodedRiverSensorData
@@ -32,13 +32,25 @@ const RiverSensorInfo = ({
                     />
                     <InfoBox 
                         title="Speed"
+                        Icon={getSpeedIcon(Number(riverSensorData.payload.speed.value))}
                         value={`${riverSensorData.payload.speed.value} ${riverSensorData.payload.speed.unit}`}
                     />
                     <InfoBox 
                         title="Battery"
                         background={getBatteryColour(riverSensorData.payload.battery.value)}
                         value={`${riverSensorData.payload.battery.value} ${riverSensorData.payload.battery.unit}`}
-                    />
+                    >
+                        <div 
+                            style={{ height: `${riverSensorData.payload.battery.value}%` }}
+                            className={`
+                                absolute 
+                                bottom-0 
+                                w-full
+                                opacity-10
+                                ${getSecondaryBatteryColour(riverSensorData.payload.battery.value)} 
+                            `}
+                        />
+                    </InfoBox>
                     <InfoBox 
                         title="State"
                         Icon={getStateIcon(riverSensorData.payload.state)}
