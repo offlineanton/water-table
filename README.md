@@ -6,7 +6,7 @@ This is a Vite / React / Typescript app that displays water sensor data
 
 - Run `npm i`
 - Run `npm run dev`
-- Go to `http://localhost:3001/`
+- Go to `http://localhost:3000/`
 
 You will also need to:
 
