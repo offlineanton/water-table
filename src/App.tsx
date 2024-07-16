@@ -2,7 +2,9 @@ function App() {
 
   return (
     <>
-      water-table
+        <h1 className="bg-red-50">
+          Hello world!
+        </h1>
     </>
   )
 }
