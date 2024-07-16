@@ -2,8 +2,7 @@ import { DialogContent, DialogDescription, DialogTitle } from "@/components/ui/d
 import { DialogHeader } from "./ui/dialog";
 import { DecodedRiverSensorData } from "../hooks/types";
 import InfoBox from "./InfoBox";
-import { getBatteryColour, getStateIcon, getTempColour } from "@/helpers";
-import { ThickArrowUpIcon } from "@radix-ui/react-icons";
+import { getBatteryColour, getStateIcon, getTempColour } from "../helpers";
 
 interface RiverSensorInfoProps {
     riverSensorData: DecodedRiverSensorData

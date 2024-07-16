@@ -7,12 +7,11 @@ import {
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 
-
+import { DEFAULT_PAGE_AMOUNT } from "../hooks/useGetRiverSensorData";
 import RiverSensorTable from "./RiverSensorTable";
 import { DecodedRiverSensorData } from "../hooks/types";
 import { Button } from "./ui/button";
 import { useState } from "react";
-import { DEFAULT_PAGE_AMOUNT } from "@/hooks/useGetRiverSensorData";
 import RiverSensorPagination from "./RiverSensorPagination";
 
 interface RiverSensorProps {

@@ -1,9 +1,7 @@
 
-import { useState } from "react";
 import ReactMapGL, { Marker } from "react-map-gl";
-// import Map from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
-import { MarkerLocation } from "@/App";
+import { MarkerLocation } from "../App";
 
 const DEFAULT_LONG = -3.44448;
 const DEFAULT_LAT = 52.293647;

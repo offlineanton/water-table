@@ -1,4 +1,4 @@
-import { DEFAULT_PAGE_AMOUNT } from "@/hooks/useGetRiverSensorData";
+import { DEFAULT_PAGE_AMOUNT } from "../hooks/useGetRiverSensorData";
 import { Button } from "./ui/button";
 
 interface RiverSensorPaginationProps {

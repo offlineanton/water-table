@@ -1,21 +1,14 @@
 import {
     Table,
     TableBody,
-    TableCaption,
     TableCell,
     TableHead,
     TableHeader,
     TableRow,
 } from "@/components/ui/table"
-import {
-    Dialog,
-    DialogContent,
-    DialogDescription,
-    DialogHeader,
-    DialogTitle,
-    DialogTrigger,
-  } from "@/components/ui/dialog"
-  import { Button } from "@/components/ui/button";
+import { Dialog } from "@/components/ui/dialog"
+import { Button } from "@/components/ui/button";
+
 import { DecodedRiverSensorData } from "../hooks/types";
 import RiverSensorInfo from "./RiverSensorInfo";
 import { useMemo, useState } from "react";

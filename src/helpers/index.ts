@@ -1,6 +1,6 @@
-import { RiverState } from "@/hooks/types";
-// import { ThickArrowUpIcon, ThickArrowDownIcon } from "@radix-ui/react-icons";
 import { ArrowUpIcon, ArrowDownIcon } from "@radix-ui/react-icons";
+
+import { RiverState } from "../hooks/types";
 
 export const decodeData = (data: string) => {
     const decodedString = atob(data);
