@@ -82,6 +82,7 @@ const RiverSensor = ({
                                 <RiverSensorPagination 
                                     page={page}
                                     handleChangePage={handleChangePage}
+                                    total={total}
                                 />
                             }
                         </>

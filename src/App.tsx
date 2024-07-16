@@ -26,6 +26,7 @@ function App() {
 
   const handleSearch = (value: string) => {
     setSearch(value);
+    setPage(1);
   }
 
   return (
