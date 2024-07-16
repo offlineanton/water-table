@@ -23,3 +23,4 @@ Listed below are some improvements I would make to the app if I were to spend mo
 - Search by other parameters, not just ID
 - Change desc/asc order of the table by clicking on table headers
 - Use React Query so that data doesn't have to load multiple times (even though this is currently just simulated)
+- Add tests
