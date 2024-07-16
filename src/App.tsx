@@ -10,25 +10,30 @@ export type MarkerLocation = {
 }
 
 function App() {
-  const [page] = useState(1);
-
-  const { riverSensorData } = GetRiverSensorData({ page });
-
+  const [page, setPage] = useState(1);
+  const handleChangePage = (page: number) => {
+    setPage(page);
+  }
+  
   const [markerLocation, setMarkerLocation] = useState<MarkerLocation | undefined>(undefined);
-
   const handleSetMarkerLocation = (long: number, lat: number) => {
     setMarkerLocation({ long, lat });
   }
 
-  console.log("riverSensorData", riverSensorData);
+  const { riverSensorData, riverSensorDataLoading } = GetRiverSensorData({ page });
 
   return (
     <>
       <div className="h-screen w-screen">
-        <RiverSensor riverSensorData={riverSensorData} handleSetMarkerLocation={handleSetMarkerLocation} />
-        <div className="w-full h-full absolute overflow-hidden">
-          <Map markerLocation={markerLocation} />
-        </div>
+        <RiverSensor 
+          riverSensorData={riverSensorData}
+          handleSetMarkerLocation={handleSetMarkerLocation}
+          page={page}
+          handleChangePage={handleChangePage} 
+          loading={riverSensorDataLoading}
+        />
+
+        <Map markerLocation={markerLocation} />
       </div>
     </>
   )

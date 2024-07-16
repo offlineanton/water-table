@@ -21,7 +21,7 @@ const Map = ({ markerLocation } : { markerLocation?: MarkerLocation }) => {
 
     const token = import.meta.env.VITE_MAPBOX_TOKEN;
     return (
-        <>
+        <div className="w-full h-full absolute overflow-hidden">
             <ReactMapGL
                 longitude={markerLocation?.long ?? DEFAULT_LONG}
                 latitude={markerLocation?.lat ?? DEFAULT_LAT}
@@ -36,9 +36,8 @@ const Map = ({ markerLocation } : { markerLocation?: MarkerLocation }) => {
                         longitude={markerLocation?.long + 0.005}
                     />
                 }
-
             </ReactMapGL>
-        </>
+        </div>
     )
 };
 
