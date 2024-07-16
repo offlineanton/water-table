@@ -18,7 +18,7 @@ interface GetRiverSensorDataSettings {
     search?: string;
 }
 
-export const GetRiverSensorData = ({ page, pageAmount = 50 }: GetRiverSensorDataSettings): GetRiverSensorData => {
+export const GetRiverSensorData = ({ page, pageAmount = 10 }: GetRiverSensorDataSettings): GetRiverSensorData => {
     const [riverSensorDataLoading, setRiverSensorDataLoading] = useState(false);
     const [riverSensorDataError] = useState(false);
     const [riverSensorData, setRiverSensorData] = useState<RiverSensorData[]>([]);
