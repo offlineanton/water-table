@@ -12,8 +12,6 @@ interface RiverSensorInfoProps {
 const RiverSensorInfo = ({
     riverSensorData
 }: RiverSensorInfoProps) => {
-    console.log("riverSensorData", riverSensorData);
-
     return (
         <>
             <DialogContent className="max-w-[600px]"> 
@@ -42,10 +40,6 @@ const RiverSensorInfo = ({
                         background={getBatteryColour(riverSensorData.payload.battery.value)}
                         value={`${riverSensorData.payload.battery.value} ${riverSensorData.payload.battery.unit}`}
                     />
-                    {/* <InfoBox 
-                        title="Alarm"
-                        value={`${riverSensorData.payload.alarm.toString()}`}
-                    /> */}
                     <InfoBox 
                         title="State"
                         Icon={getStateIcon(riverSensorData.payload.state)}

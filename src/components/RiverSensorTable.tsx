@@ -40,9 +40,6 @@ const RiverSensorTable = ({
             <Table>
                 <TableHeader>
                     <TableRow>
-                        {/* <TableHead className="w-[100px]">ID</TableHead> */}
-                        {/* <TableHead>ID</TableHead> */}
-                        {/* <TableHead>Direction</TableHead> */}
                         <TableHead>Long</TableHead>
                         <TableHead>Lat</TableHead>
                         <TableHead>Transmitted At</TableHead>
@@ -54,8 +51,6 @@ const RiverSensorTable = ({
                 <TableBody>
                     {riverSensorData.map(data => (
                         <TableRow key={data.id}>
-                            {/* <TableCell className="font-medium">{data.id}</TableCell> */}
-                            {/* <TableCell>{data.direction}</TableCell> */}
                             <TableCell className="p-2">{data.longitude}</TableCell>
                             <TableCell className="p-2">{data.latitude}</TableCell>
                             <TableCell className="p-2">{new Date(data.transmittedAt.iso).toLocaleString("en-GB")}</TableCell>

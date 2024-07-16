@@ -8,6 +8,11 @@ This is a Vite / React / Typescript app that displays water sensor data
 - Run `npm run dev`
 - Go to `http://localhost:3001/`
 
+You will also need to:
+
+- Create an `.env.local`
+- Ask for the `VITE_MAPBOX_TOKEN` and add that to the `.env.local`
+
 **Improvements**
 
 Listed below are some improvements I would make to the app if I were to spend more time on it:

@@ -9,16 +9,6 @@ const DEFAULT_LONG = -3.44448;
 const DEFAULT_LAT = 52.293647;
 
 const Map = ({ markerLocation } : { markerLocation?: MarkerLocation }) => {
-    // const [viewport] = useState({
-    //     latitude: markerLocation?.lat ?? DEFAULT_LAT,
-    //     longitude: markerLocation?.long ?? DEFAULT_LONG,
-    //     zoom: 10,
-    //     width: "100%",
-    //     height: "100%",
-    // });
-
-    console.log("markerLocation", markerLocation);
-
     const token = import.meta.env.VITE_MAPBOX_TOKEN;
     return (
         <div className="w-full h-full absolute overflow-hidden">

@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { GetRiverSensorData } from "./hooks/useGetRiverSensorData";
-import Sidebar from "./components/Sidebar";
 import RiverSensor from "./components/RiverSensor";
 import Map from "./components/Map";
 
@@ -16,6 +15,10 @@ function App() {
   }
 
   const [search, setSearch] = useState("");
+  const handleSearch = (value: string) => {
+    setSearch(value);
+    setPage(1);
+  }
   
   const [markerLocation, setMarkerLocation] = useState<MarkerLocation | undefined>(undefined);
   const handleSetMarkerLocation = (long: number, lat: number) => {
@@ -23,11 +26,6 @@ function App() {
   }
 
   const { riverSensorData, riverSensorDataLoading, total } = GetRiverSensorData({ page, search });
-
-  const handleSearch = (value: string) => {
-    setSearch(value);
-    setPage(1);
-  }
 
   return (
     <>

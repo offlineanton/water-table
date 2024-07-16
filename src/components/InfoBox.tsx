@@ -15,7 +15,6 @@ const InfoBox = ({
 }: InfoBoxProps) => {
     return (
         <div className={`w-[120px] h-[120px] ${background} rounded-[5px] flex flex-col items-center justify-center`}>
-            
             {Icon && <Icon width="110px" height="110px"  className="absolute opacity-5" />}
 
             <p className="font-bold">{title}</p>
