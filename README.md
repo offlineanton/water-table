@@ -24,5 +24,6 @@ Listed below are some improvements I would make to the app if I were to spend mo
 - Change desc/asc order of the table by clicking on table headers
 - Use React Query so that data doesn't have to load multiple times (even though this is currently just simulated)
 - Add tests
-- Highlight the row currently selected showing on the map 
-- Currently there is a UX issue where if you click on one of the rows location and then click on one of the other rows Sensor Data, the map stays the same, this UX could be improved 
+- Highlight the row currently selected showing on the map
+- Currently there is a UX issue where if you click on one of the rows location and then click on one of the other rows Sensor Data, the map stays the same, this UX could be improved
+- Sort out linting/prettier
